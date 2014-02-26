@@ -68,7 +68,7 @@ FOREMAN_HOSTGROUPS=[
 Screenshot
 ==========
 
-Coming soon
+![Screenshot](lab0.png)
 
 
 License
