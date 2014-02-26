@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en" ng-app="lab0App">
+<head>
+<meta charset="utf-8">
+<title>lab0</title>
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<link rel="stylesheet" href="css/bootstrap-theme.min.css">
+<script src="js/lib/angular.min.js"></script>
+<script src="js/lib/angular-route.min.js"></script>
+<script src="js/lib/angular-resource.min.js"></script>
+<script src="js/filters.js"></script>
+<script src="js/services.js"></script>
+<script src="js/controllers.js"></script>
+<script src="js/app.js"></script>
+</head>
+<body ng-controller="ForemanCtrl" style="padding-top: 70px;">
+
+<nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+
+          <a class="navbar-brand" href="#">lab0</a>
+        <p class="navbar-text  navbar-right" ng-show="user[0]">Logged in as {{user[0].username}} (<a ng-click="logout()">logout</a>)</p>
+        <p class="navbar-right navbar-form" ng-show="!user[0]">
+            <input ng-model="login_username" placeholder="username" class="form-control" />
+            <input ng-model="login_password" placeholder="password" type="password" class="form-control" />
+            <a href="" ng-click="login(login_username, login_password)" class="btn btn-info">Login</a>
+        </p>
+      </div>
+</nav>
+
+<div class="container">
+
+    <div class="alert alert-danger" ng-show="error"><strong>Error!</strong> {{error}}<button type="button" class="close" ng-click="error=false" aria-hidden="true">&times;</button></div>
+<table class="table"  ng-show="user[0]">
+    <tr><th>Fqdn</th><th>Parameters</th><th></th></tr>
+    <tr ng-repeat="host in hosts">
+        <td>
+            {{host.name}}
+        </td>
+        <td>
+            <select  class="form-control" ng-model="host.hostgroup_id" ng-options="h.id as h.label for h in host.hostgroups">
+            </select>
+            <div ng-repeat="parameter in host.parameters|selectNonEmpty">
+                <a ng-show="parameter.force==1;parameter.value==''" ng-click="parameter.force=0" class="pull-right btn btn-default btn-xs"><span class="glyphicon glyphicon-eye-close"></span></a>
+                {{parameter.label}}
+                <input ng-change="host.modified=1;parameter.force=1" style="width:100%" class="form-control" ng-model="parameter.value" >
+            </div>
+            <div ng-show="emptyParameters.length > 0">
+                <a href="" class="btn-default btm btn-xs pull-right" ng-click="host.showmore=1" ng-show="!host.showmore==1"><span class="glyphicon glyphicon-plus"></span> More</a>
+                <a href="" class="btn-default btm btn-xs pull-right small" ng-click="host.showmore=0" ng-show="host.showmore==1"><span class="glyphicon glyphicon-minus"></span> Less</a>
+                <div ng-show="host.showmore==1" ng-repeat="parameter in emptyParameters = (host.parameters|selectEmpty)">
+                    <a href="" class="btn btn-info btn-xs" ng-click="parameter.force=1"><span class="glyphicon glyphicon-plus-sign"></span> {{parameter.label}}</a>
+                </div>
+            </div>
+        </td>
+        <td>
+            <a style="display:block;width:100%;" ng-class="{'btn btn-default': !host.build, 'btn btn-success active': host.build}" ng-click="host.modified=1;host.build=!host.build"><span ng-show="host.build">Rebuild</span><span ng-show="!host.build">Do not rebuild</span></a>
+            <a style="display:block;width:100%;" ng-href="{{host.console_url}}" class="btn btn-default" ng-show="host.console_url"><span class="glyphicon glyphicon-new-window"></span> Console</a>
+            <a style="display:block;width:100%;" href="" ng-click="refreshHost(host)" ng-class="{'btn btn-warning': host.refreshing, 'btn btn-default': !host.refreshing}"><span class="glyphicon glyphicon-refresh"></span> Refresh</a>
+            <a style="display:block;width:100%;" href="" ng-click="updateHost(host)" ng-class="{'btn btn-primary': host.modified==1, 'btn btn-default': !host.modified, 'btn btn-warning': host.modified==2}"><span class="glyphicon glyphicon-upload"></span> Update</a>
+            </td>
+    </tr>
+</table>
+</div>
+</body>
+</html>
