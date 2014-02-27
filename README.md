@@ -71,6 +71,13 @@ Screenshot
 ![Screenshot](lab0.png)
 
 
+Demo
+====
+
+http://lab0.roidelapluie.be/
+
+Updates will obviously now work on the demo.
+
 License
 =======
 
