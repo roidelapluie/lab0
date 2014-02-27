@@ -1,0 +1,184 @@
+{
+    "objects": [
+        {
+            "name": "staging1.example.com",
+            "hostgroup_id": 1,
+            "hostgroups": [
+                { "id":1, "label": "Application server" },
+                { "id":2, "label": "Database server" },
+                { "id":3, "label": "Monitoring server" }
+            ],
+            "console_url": "#",
+            "parameters": [
+                {
+                    "label": "PHP version",
+                    "value": "5.3"
+                },
+                {
+                    "label": "vhost name",
+                    "value": "brandapp.example.com"
+                },
+                {
+                    "label": "Name of the reverse proxy",
+                    "value": ""
+                },
+                {
+                    "label": "Name of the application",
+                    "value": "Brand App"
+                },
+                {
+                    "label": "IP of the database server",
+                    "value": "172.31.42.5"
+                },
+                {
+                    "label": "IP of the application server",
+                    "value": ""
+                },
+                {
+                    "label": "IP of the RabbitMQ server (for sensu)",
+                    "value": ""
+                },
+                {
+                    "label": "LDAP server",
+                    "value": "ldap://172.16.42.2"
+                }
+            ],
+            "build": false
+        },
+        {
+            "name": "staging2.example.com",
+            "hostgroup_id": 1,
+            "hostgroups": [
+                { "id":1, "label": "Application server" },
+                { "id":2, "label": "Database server" },
+                { "id":3, "label": "Monitoring server" }
+            ],
+            "console_url": "#",
+            "parameters": [
+                {
+                    "label": "PHP version",
+                    "value": "5.4"
+                },
+                {
+                    "label": "vhost name",
+                    "value": "oldapplicance.example.com"
+                },
+                {
+                    "label": "Name of the reverse proxy",
+                    "value": ""
+                },
+                {
+                    "label": "Name of the application",
+                    "value": "Old Applicance"
+                },
+                {
+                    "label": "IP of the database server",
+                    "value": ""
+                },
+                {
+                    "label": "IP of the application server",
+                    "value": ""
+                },
+                {
+                    "label": "IP of the RabbitMQ server (for sensu)",
+                    "value": ""
+                },
+                {
+                    "label": "LDAP server",
+                    "value": "ldap://172.16.42.2"
+                }
+            ],
+            "build": true
+        },
+        {
+            "name": "staging3.example.com",
+            "hostgroup_id": 2,
+            "hostgroups": [
+                { "id":1, "label": "Application server" },
+                { "id":2, "label": "Database server" },
+                { "id":3, "label": "Monitoring server" }
+            ],
+            "console_url": "",
+            "parameters": [
+                {
+                    "label": "PHP version",
+                    "value": ""
+                },
+                {
+                    "label": "vhost name",
+                    "value": ""
+                },
+                {
+                    "label": "Name of the reverse proxy",
+                    "value": ""
+                },
+                {
+                    "label": "Name of the application",
+                    "value": ""
+                },
+                {
+                    "label": "IP of the database server",
+                    "value": ""
+                },
+                {
+                    "label": "IP of the application server",
+                    "value": ""
+                },
+                {
+                    "label": "IP of the RabbitMQ server (for sensu)",
+                    "value": ""
+                },
+                {
+                    "label": "LDAP server",
+                    "value": "ldap://172.16.42.2"
+                }
+            ],
+            "build": false
+        },
+        {
+            "name": "staging4.example.com",
+            "hostgroup_id": 3,
+            "hostgroups": [
+                { "id":1, "label": "Application server" },
+                { "id":2, "label": "Database server" },
+                { "id":3, "label": "Monitoring server" }
+            ],
+            "console_url": "",
+            "parameters": [
+                {
+                    "label": "PHP version",
+                    "value": ""
+                },
+                {
+                    "label": "vhost name",
+                    "value": "sensu.example.com"
+                },
+                {
+                    "label": "Name of the reverse proxy",
+                    "value": "rp.example.com"
+                },
+                {
+                    "label": "Name of the application",
+                    "value": "Sensu"
+                },
+                {
+                    "label": "IP of the database server",
+                    "value": ""
+                },
+                {
+                    "label": "IP of the application server",
+                    "value": ""
+                },
+                {
+                    "label": "IP of the RabbitMQ server (for sensu)",
+                    "value": "172.31.42.50"
+                },
+                {
+                    "label": "LDAP server",
+                    "value": "ldap://172.16.42.2"
+                }
+            ],
+            "build": false
+        }
+    ]
+}
