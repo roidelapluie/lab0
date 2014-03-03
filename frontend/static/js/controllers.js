@@ -33,7 +33,10 @@ lab0AppControllers.controller('ForemanCtrl', ['$scope', 'Host', 'User', function
         });
     }
     $scope.updateHost = function(host){
-        host.modified = 2;
+        if (host.modified == 1||host.modified==3)
+        {
+        host.modified += 1;
+        }
         host.$save(function (host) {
             host.modified=0;
             host.refreshing=true;

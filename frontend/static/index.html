@@ -38,14 +38,14 @@
             {{host.name}}
         </td>
         <td>
-            <select  class="form-control" ng-model="host.hostgroup_id" ng-options="h.id as h.label for h in host.hostgroups">
+            <select ng-change="host.modified=3" class="form-control" ng-model="host.hostgroup_id" ng-disabled="host.modified==1" ng-options="h.id as h.label for h in host.hostgroups">
             </select>
             <div ng-repeat="parameter in host.parameters|selectNonEmpty">
                 <a ng-show="parameter.force==1;parameter.value==''" ng-click="parameter.force=0" class="pull-right btn btn-default btn-xs"><span class="glyphicon glyphicon-eye-close"></span></a>
                 {{parameter.label}}
-                <input ng-change="host.modified=1;parameter.force=1" style="width:100%" class="form-control" ng-model="parameter.value" >
+                <input ng-disabled="host.modified==3" ng-change="host.modified=1;parameter.force=1" style="width:100%" class='form-control' ng-model="parameter.value" >
             </div>
-            <div ng-show="emptyParameters.length > 0">
+            <div ng-show="emptyParameters.length > 0" ng-if="host.modified!=3">
                 <a href="" class="btn-default btm btn-xs pull-right" ng-click="host.showmore=1" ng-show="!host.showmore==1"><span class="glyphicon glyphicon-plus"></span> More</a>
                 <a href="" class="btn-default btm btn-xs pull-right small" ng-click="host.showmore=0" ng-show="host.showmore==1"><span class="glyphicon glyphicon-minus"></span> Less</a>
                 <div ng-show="host.showmore==1" ng-repeat="parameter in emptyParameters = (host.parameters|selectEmpty)">
@@ -57,7 +57,7 @@
             <a style="display:block;width:100%;" ng-class="{'btn btn-default': !host.build, 'btn btn-success active': host.build}" ng-click="host.modified=1;host.build=!host.build"><span ng-show="host.build">Rebuild</span><span ng-show="!host.build">Do not rebuild</span></a>
             <a style="display:block;width:100%;" ng-href="{{host.console_url}}" class="btn btn-default" ng-show="host.console_url"><span class="glyphicon glyphicon-new-window"></span> Console</a>
             <a style="display:block;width:100%;" href="" ng-click="refreshHost(host)" ng-class="{'btn btn-warning': host.refreshing, 'btn btn-default': !host.refreshing}"><span class="glyphicon glyphicon-refresh"></span> Refresh</a>
-            <a style="display:block;width:100%;" href="" ng-click="updateHost(host)" ng-class="{'btn btn-primary': host.modified==1, 'btn btn-default': !host.modified, 'btn btn-warning': host.modified==2}"><span class="glyphicon glyphicon-upload"></span> Update</a>
+            <a style="display:block;width:100%;" href="" ng-click="updateHost(host)" ng-class="{'btn btn-primary': host.modified==1 || host.modified==3, 'btn btn-default': !host.modified, 'btn btn-warning': host.modified==2||host.modified==4}"><span class="glyphicon glyphicon-upload"></span> Update</a>
             </td>
     </tr>
 </table>

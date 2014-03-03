@@ -30,7 +30,8 @@ class HostObject(object):
 class HostResource(Resource):
 
     name = fields.CharField(attribute='name')
-    puppet_status = fields.IntegerField(attribute='puppet_status')
+    modified = fields.IntegerField(attribute='modified', null=True)
+    puppet_status = fields.IntegerField(attribute='puppet_status', null=True)
     build = fields.BooleanField(attribute='build')
     console_url = fields.CharField(attribute='console_url', null=True, readonly=True)
     parameters = fields.ApiField(attribute='parameters', null=True)

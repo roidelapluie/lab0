@@ -94,17 +94,18 @@ class Foreman:
         else:
             data.append("host[build]=false")
 
-        data.append("host[hostgroup_id]=%s" % bundle.hostgroup_id)
-
+        if bundle.modified == 4:
+            data.append("host[hostgroup_id]=%s" % bundle.hostgroup_id)
         data = self._query('hosts/%s' % bundle.name, action='PUT', data="&".join(data))
-        for parameter in bundle.parameters:
-            parameter_id = parameter
-            parameter_value = bundle.parameters[parameter]['value']
-            override_id = bundle.parameters[parameter]['override_id']
-            if override_id == '':
-                self.create_smart_class_parameter(bundle.name, parameter_id, parameter_value)
-            else:
-                self.update_smart_class_parameter(override_id, bundle.name, parameter_id, parameter_value)
+        if bundle.modified == 2:
+            for parameter in bundle.parameters:
+                parameter_id = parameter
+                parameter_value = bundle.parameters[parameter]['value']
+                override_id = bundle.parameters[parameter]['override_id']
+                if override_id == '':
+                    self.create_smart_class_parameter(bundle.name, parameter_id, parameter_value)
+                else:
+                    self.update_smart_class_parameter(override_id, bundle.name, parameter_id, parameter_value)
         return data['host']
 
     def create_smart_class_parameter(self,hostname, parameter_id, parameter_value):
