@@ -54,10 +54,10 @@
             </div>
         </td>
         <td>
-            <a style="display:block;width:100%;" ng-class="{'btn btn-default': !host.build, 'btn btn-success active': host.build}" ng-click="host.modified=1;host.build=!host.build"><span ng-show="host.build">Rebuild</span><span ng-show="!host.build">Do not rebuild</span></a>
+            <a style="display:block;width:100%;" ng-class="{'btn btn-default': !host.build, 'btn btn-success active': host.build}" ng-click="host.build_changed=1;host.build=!host.build"><span ng-show="host.build">Rebuild</span><span ng-show="!host.build">Do not rebuild</span></a>
             <a style="display:block;width:100%;" ng-href="{{host.console_url}}" class="btn btn-default" ng-show="host.console_url"><span class="glyphicon glyphicon-new-window"></span> Console</a>
             <a style="display:block;width:100%;" href="" ng-click="refreshHost(host)" ng-class="{'btn btn-warning': host.refreshing, 'btn btn-default': !host.refreshing}"><span class="glyphicon glyphicon-refresh"></span> Refresh</a>
-            <a style="display:block;width:100%;" href="" ng-click="updateHost(host)" ng-class="{'btn btn-primary': host.modified==1 || host.modified==3, 'btn btn-default': !host.modified, 'btn btn-warning': host.modified==2||host.modified==4}"><span class="glyphicon glyphicon-upload"></span> Update</a>
+            <a style="display:block;width:100%;" href="" ng-click="updateHost(host)" ng-class="{'btn btn-primary': host.modified==1 || host.modified==3 || host.build_changed == 1, 'btn btn-default': !host.modified && !host.build_changed, 'btn btn-warning': host.modified==2||host.modified==4}"><span class="glyphicon glyphicon-upload"></span> Update</a>
             </td>
     </tr>
 </table>
